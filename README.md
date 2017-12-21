@@ -6,10 +6,18 @@ Of course, you are free to start this project from scratch if you wish! Just be 
 
 ## TL;DR
 
-To get started developing right away:
+To get started developing right away with npm:
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
+
+or
+
+Get started with yarn:
+
+* install yarn with choco `choco install yarn`
+* install all project dependencies with `yarn install`
+* start the development server with `yarn start`
 
 ## What You're Getting
 ```bash
