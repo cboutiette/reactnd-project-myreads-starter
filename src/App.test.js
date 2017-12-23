@@ -2,7 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import {BrowserRouter} from 'react-router-dom'
-import Book from "./Book";
+import Book from './Book'
+import BooksAPI from 'BooksAPI'
+import Bookshelf from 'src/Bookshelf'
 
 /**
  This course is not designed to teach Test Driven Development.
@@ -25,6 +27,15 @@ it('renders Book without crashing', () => {
         title="sampleTitle"
         authors={["Author1", "Author2"]}
         coverUrl='url("https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwjT-diHu57YAhUB6YMKHfgMB2oQjRwIBw&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F39617671699188795%2F&psig=AOvVaw3G6gJUpHOC2U9jsUYJnNYb&ust=1514061045243693")'/>
+})
+
+it('render books from BooksAPI using bookshelf component', () =>{
+    BooksAPI.getAll().then((books) => {
+        <Bookshelf
+            bookshelfTitle="testShelf"
+            books={books}
+        />
+    })
 })
 
 
