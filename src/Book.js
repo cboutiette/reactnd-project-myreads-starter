@@ -10,7 +10,7 @@ class  Book extends Component{
     }
 
     state = {
-        bookStatus: "none" // Can be: None, Read, WantToRead, CurrentlyReading
+        bookStatus: "none" // Can be: ["wantToRead", "currentlyReading", "read"]
     }
 
     render() {
