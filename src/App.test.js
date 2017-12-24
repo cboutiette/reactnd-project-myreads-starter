@@ -2,9 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import {BrowserRouter} from 'react-router-dom'
-import Book from './Book'
-import BooksAPI from 'BooksAPI'
-import Bookshelf from 'src/Bookshelf'
+
 
 /**
  This course is not designed to teach Test Driven Development.
@@ -14,28 +12,14 @@ import Bookshelf from 'src/Bookshelf'
 
 /**
  * This is a high level test that will verify that EVERYTHING
- * renders as expected
+ * renders as expected.
+ * *
+ * NOTE - I am currently getting local storage error because
+ * it is not defined for testing.  After submission I would like to figure this out.
+ * TODO: Figure out why I am getting a local storage error
  */
 it('renders without crashing', () => {
     const div = document.createElement('div')
     ReactDOM.render(<BrowserRouter><App/></BrowserRouter>, div)
 })
-
-it('renders Book without crashing', () => {
-    <Book
-        className="book-cover book-title-image"
-        title="sampleTitle"
-        authors={["Author1", "Author2"]}
-        coverUrl='url("https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwjT-diHu57YAhUB6YMKHfgMB2oQjRwIBw&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F39617671699188795%2F&psig=AOvVaw3G6gJUpHOC2U9jsUYJnNYb&ust=1514061045243693")'/>
-})
-
-it('render books from BooksAPI using bookshelf component', () =>{
-    BooksAPI.getAll().then((books) => {
-        <Bookshelf
-            bookshelfTitle="testShelf"
-            books={books}
-        />
-    })
-})
-
 

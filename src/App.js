@@ -1,9 +1,9 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import {Route, Link} from 'react-router-dom'
-import Bookshelf from './Bookshelf'
+import {Route} from 'react-router-dom'
 import BookSearch from './BookSearch'
+import Bookcase from "./Bookcase";
 
 
 class BooksApp extends React.Component {
@@ -40,34 +40,10 @@ class BooksApp extends React.Component {
                 <Route
                     exact path="/"
                     render={() => (
-                        <div className="list-books">
-                            <div className="list-books-title">
-                                <h1>MyReads</h1>
-                            </div>
-                            <div className="list-books-content">
-                                <div>
-                                    <Bookshelf
-                                        books={this.state.books.filter(b => b.shelf === "currentlyReading")}
-                                        bookshelfTitle="Currently Reading"
-                                        updateBookShelf={this.updateBookshelves}
-                                    />
-                                    <Bookshelf
-                                        books={this.state.books.filter(b => b.shelf === "wantToRead")}
-                                        bookshelfTitle="Want To Read"
-                                        updateBookShelf={this.updateBookshelves}
-                                    />
-                                    <Bookshelf
-                                        books={this.state.books.filter(b => b.shelf === "read")}
-                                        bookshelfTitle="Read"
-                                        updateBookShelf={this.updateBookshelves}
-                                    />
-                                </div>
-                            </div>
-                            <div className="open-search">
-                                <Link to="/search">Add a book</Link>
-                            </div>
-                        </div>
-
+                        <Bookcase
+                            books={this.state.books}
+                            name="My Bookcase"
+                        />
                     )}
                 />
             </div>
