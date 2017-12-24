@@ -5,11 +5,12 @@ import Book from './Book'
 class Bookshelf extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
-        bookshelfTitle: PropTypes.string.isRequired
+        bookshelfTitle: PropTypes.string.isRequired,
+        updateBookShelf: PropTypes.func.isRequired
     }
 
     render() {
-        const {books, bookshelfTitle} = this.props
+        const {books, bookshelfTitle, updateBookShelf, } = this.props
 
         return (
             <div className="bookshelf">
@@ -18,9 +19,8 @@ class Bookshelf extends Component {
                     <ol className="books-grid">
                         {books.map((b) => (
                             <li key={b.id}><Book
-                                authors={b.authors}
-                                coverUrl={'url("' + b.imageLinks.thumbnail + '")'}
-                                title={b.title}
+                                book={b}
+                                updateBookshelf={updateBookShelf}
                             /></li>
                             ))}
                     </ol>

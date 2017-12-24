@@ -4,17 +4,18 @@ import './App.css'
 
 class  Book extends Component{
     static propTypes = {
-        title: PropTypes.string.isRequired,
-        authors: PropTypes.arrayOf(PropTypes.string).isRequired,
-        coverUrl: PropTypes.string.isRequired
+        book: PropTypes.object.isRequired,
+        updateBookshelf: PropTypes.func.isRequired
     }
 
-    state = {
-        bookStatus: "none" // Can be: ["wantToRead", "currentlyReading", "read"]
+
+    updateBook = (event) => {
+        this.props.updateBookshelf(this.props.book, event.target.value)
     }
 
     render() {
-        var {coverUrl, title, authors} = this.props
+        const {book} = this.props
+        const imageUrl = 'url("' + book.imageLinks.thumbnail + '")'
 
         return (
             <div className="book">
@@ -22,21 +23,20 @@ class  Book extends Component{
                     <div className="book-cover-image book-cover" style={{
                         width: 128,
                         height: 188,
-                        backgroundImage:coverUrl
+                        backgroundImage:imageUrl
                     }}></div>
                     <div className="book-shelf-changer">
-                        <select>
+                        <select value={book.shelf} onChange={this.updateBook}>
                             <option value="none" disabled>Move to...</option>
-                            <option value="currentlyReading">Currently Reading
-                            </option>
+                            <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
                             <option value="read">Read</option>
                             <option value="none">None</option>
                         </select>
                     </div>
                 </div>
-                <div className="book-title">{title}</div>
-                {authors.map((a, key) =>
+                <div className="book-title">{book.title}</div>
+                {book.authors.map((a, key) =>
                     <div key={key} className="book-authors">{a}</div>)}
             </div>
         )
