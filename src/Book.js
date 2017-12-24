@@ -5,12 +5,12 @@ import './App.css'
 class  Book extends Component{
     static propTypes = {
         book: PropTypes.object.isRequired,
-        updateBookshelf: PropTypes.func.isRequired
+        onUpdateBookshelves: PropTypes.func.isRequired
     }
 
 
     updateBook = (event) => {
-        this.props.updateBookshelf(this.props.book, event.target.value)
+        this.props.onUpdateBookshelves(this.props.book, event.target.value)
     }
 
     render() {

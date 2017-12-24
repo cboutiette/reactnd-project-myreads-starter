@@ -43,6 +43,7 @@ class BooksApp extends React.Component {
                         <Bookcase
                             books={this.state.books}
                             name="My Bookcase"
+                            onUpdateBookshelves={this.updateBookshelves}
                         />
                     )}
                 />

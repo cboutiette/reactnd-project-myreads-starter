@@ -12,11 +12,12 @@ class Bookcase extends Component
     // ProtoTypes here
     static propTypes = {
         books: PropTypes.array.isRequired,
-        name: PropTypes.string.isRequired
+        name: PropTypes.string.isRequired,
+        onUpdateBookshelves: PropTypes.func.isRequired
     }
 
     render() {
-        const {books, name} = this.props
+        const {books, name, onUpdateBookshelves} = this.props
 
         return (
             <div className="list-books">
@@ -28,17 +29,17 @@ class Bookcase extends Component
                         <Bookshelf
                             books={books.filter(b => b.shelf === "currentlyReading")}
                             bookshelfTitle="Currently Reading"
-                            updateBookShelf={this.updateBookshelves}
+                            onUpdateBookshelves={onUpdateBookshelves}
                         />
                         <Bookshelf
                             books={books.filter(b => b.shelf === "wantToRead")}
                             bookshelfTitle="Want To Read"
-                            updateBookShelf={this.updateBookshelves}
+                            onUpdateBookshelves={onUpdateBookshelves}
                         />
                         <Bookshelf
                             books={books.filter(b => b.shelf === "read")}
                             bookshelfTitle="Read"
-                            updateBookShelf={this.updateBookshelves}
+                            onUpdateBookshelves={onUpdateBookshelves}
                         />
                     </div>
                 </div>
