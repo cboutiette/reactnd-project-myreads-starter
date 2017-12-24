@@ -15,26 +15,33 @@ class BookSearch extends Component {
         resultingBooks: []
     }
 
-    componentDidMount(){
-        BooksAPI.search(this.state.query).then((resultingBooks) => {
-            if(resultingBooks)
+    updateQuery = (query) => {
+        this.setState({query: query}, () => {
+            if(query !== "")
             {
-                console.log("Got some books")
-                console.log({resultingBooks})
-                this.setState({resultingBooks})
+                BooksAPI.search(query).then((resultingBooks) => {
+                    console.log({query})
+                    if (!resultingBooks.error) {
+                        console.log("Got some books")
+                        console.log({resultingBooks})
+                        this.setState({resultingBooks})
+                    }
+                    else{
+                        console.log("Response is not OK")
+                        console.log({resultingBooks})
+                        this.setState({resultingBooks: []})
+                    }
+                })
             }
             else{
-                console.log("NO BOOKS FOUND")
+                console.log("Empty query")
+                this.setState({resultingBooks: []})
             }
         })
     }
 
-    updateQuery = (query) => {
-        this.setState({query: query})
-    }
-
     render() {
-        const { query, resultingBooks } = this.state
+        const {query, resultingBooks} = this.state
         const {onUpdateBookshelves} = this.props
 
         resultingBooks.sort(sortBy('title'))
@@ -51,6 +58,10 @@ class BookSearch extends Component {
 
                           However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                           you don't find a specific author or title. Every search is limited by search terms.
+                        */}
+
+                        {/*
+                            Here I debounce the input to prevent overcalling the search function
                         */}
                         <input
                             type="text"

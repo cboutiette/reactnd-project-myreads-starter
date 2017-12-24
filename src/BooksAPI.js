@@ -36,8 +36,9 @@ export const search = (query, maxResults) =>
   fetch(`${api}/search`, {
     method: 'POST',
     headers: {
-      ...headers,
-      'Content-Type': 'application/json'
+        ...headers,
+        'Content-Type': 'application/json',
+        'Authorization': 'chris-boutiette'
     },
     body: JSON.stringify({ query, maxResults })
   }).then(res => res.json())
