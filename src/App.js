@@ -34,6 +34,7 @@ class BooksApp extends React.Component {
                     exact path="/search"
                     render={() => (
                         <BookSearch
+                            currentBooks={this.state.books}
                             onUpdateBookshelves={this.updateBookshelves}
                         />
                     )}
