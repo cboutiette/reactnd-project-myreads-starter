@@ -4,6 +4,7 @@ import * as BooksAPI from './BooksAPI'
 import sortBy from 'sort-by'
 import BooksGrid from './BooksGrid'
 import PropTypes from 'prop-types'
+import {Debounce} from 'react-throttle'
 
 
 class BookSearch extends Component {
@@ -50,7 +51,7 @@ class BookSearch extends Component {
     }
 
     render() {
-        const {query, resultingBooks} = this.state
+        const {resultingBooks} = this.state
         const {onUpdateBookshelves} = this.props
 
         resultingBooks.sort(sortBy('title'))
@@ -72,12 +73,15 @@ class BookSearch extends Component {
                         {/*
                             Here I debounce the input to prevent overcalling the search function
                         */}
-                        <input
-                            type="text"
-                            placeholder="Search by title or author"
-                            value={query}
-                            onChange={(event) => this.updateQuery(event.target.value)}
-                        />
+
+                        <Debounce time="400" handler="onChange">
+                            <input
+                                type="text"
+                                placeholder="Search by title or author"
+                                onChange={(event) => this.updateQuery(event.target.value)}
+                            />
+                        </Debounce>
+
                     </div>
                 </div>
                 <div className="search-books-results">
