@@ -25,16 +25,24 @@ class BookSearch extends Component {
                 BooksAPI.search(query).then((resultingBooks) => {
                     console.log({query})
                     if (!resultingBooks.error) {
+                        console.log("Response is OK")
+
                         const { currentBooks } = this.props
 
-                        // First iterate through each currentBook
-                        // Find the book with the same id
-                        // If the ID is a match then do an object assign to the resulting books array
-                        var merged = resultingBooks.map(rBook => currentBooks.find(cBook => cBook.id === rBook.id ) || rBook)
+                        if(currentBooks.length !== 0)
+                        {
+                            // First iterate through each currentBook
+                            // Find the book with the same id
+                            // If the ID is a match then do an object assign to the resulting books array
+                            const merged = resultingBooks.map(rBook => currentBooks.find(cBook => cBook.id === rBook.id ) || rBook)
 
-                        console.log("Response is OK")
-                        console.log({merged})
-                        this.setState({resultingBooks: merged})
+                            console.log("Merging...")
+                            console.log({merged})
+                            this.setState({resultingBooks: merged})
+                        }
+                        else{
+                            this.setState({resultingBooks})
+                        }
                     }
                     else{
                         console.log("Response is not OK")
